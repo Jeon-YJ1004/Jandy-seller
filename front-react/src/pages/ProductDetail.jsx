@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/common/Header";
 import product_list from ".././assets/json/product_list.js";
+import swal from "sweetalert";
+
 function ProductDetail(props) {
   // const id = props.match.params.id;
   // const prd_list = product_list.product;
@@ -41,7 +43,16 @@ function ProductDetail(props) {
     setOption(_options);
   };
 
-  const setShoppingBasket = () => {};
+  const setShoppingBasket = () => {
+    swal({
+      title: "장바구니에 담았습니다",
+      icon: "success",
+      buttons: {
+        goCart: { text: "장바구니 이동", value: "goCart" },
+        cancel: "쇼핑 계속하기",
+      },
+    });
+  };
   return (
     <>
       <Header />
