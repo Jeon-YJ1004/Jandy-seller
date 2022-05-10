@@ -4,9 +4,7 @@ import "./App.css";
 import KakaoLogin from "./pages/kakao/KakaoLogin.js";
 import Auth from "./pages/kakao/Auth.js";
 import Profile from "./pages/kakao/Profile.js";
-import Main from "./pages/Main";
-import ProductDetail from "./pages/ProductDetail";
-
+import { Mypage, ProductDetail, Main, Mymarket } from "./pages";
 function App() {
   return (
     <div className="App">
@@ -14,9 +12,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/detail/:id" element={<ProductDetail />} />
-          <Route path="/login" element={<KakaoLogin />}></Route>
-          <Route path="/oauth/kakao/login/" element={<Auth />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/login" element={<KakaoLogin />} />
+          <Route path="/oauth/kakao/login/" element={<Auth />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/myMarket" element={<Mymarket />} />
         </Routes>
       </Router>
     </div>

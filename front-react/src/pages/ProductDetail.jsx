@@ -76,7 +76,6 @@ function ProductDetail(props) {
 }
 const Line = styled.hr`
   border: solid 0.2px #ebebeb;
-  align: center;
   width: 92%;
 `;
 const Select = styled.select`

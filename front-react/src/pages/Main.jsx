@@ -12,7 +12,11 @@ function Main() {
   const prd_list = product_list;
   useEffect(() => {
     // 쿠키에 로그인 세션이 있는지 확인
-    // 상품 리스트를 db에서 받아오기
+    // if(isLogin(true){
+    //   dispatch(useActions.checkLoginDB());
+    // })
+    // // 상품 리스트를 db에서 받아오기
+    // dispath(prdActions.getPrdDB());
   }, []);
   return (
     <>
