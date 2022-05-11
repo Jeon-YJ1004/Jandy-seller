@@ -1,9 +1,14 @@
 import { React, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+import { actionType as userActions } from "../../lib/userApi";
+
 function Header() {
-  const isLogin = useState();
+  const dispatch = useDispatch();
+  const user_info = useSelector((state) => state.user.user);
+  // const is_login = getCookie("is_login");
   return (
     <>
       <Logo
@@ -26,9 +31,31 @@ function Header() {
         <StyledLi>
           <StyledLink to="/mypage">my Page</StyledLink>
         </StyledLi>
-        <StyledLi>
-          <StyledLink to="/login">로그인</StyledLink>
-        </StyledLi>
+        {user_info ? (
+          <StyledLi>
+            <StyledLink to="/">{user_info.name}님</StyledLink>
+          </StyledLi>
+        ) : (
+          <StyledLi>
+            <StyledLink to="/login">로그인</StyledLink>
+          </StyledLi>
+        )}
+        {user_info ? (
+          <StyledLi>
+            <StyledLink
+              to="/"
+              onClick={() => {
+                dispatch(userActions.logOut());
+              }}
+            >
+              로그아웃
+            </StyledLink>
+          </StyledLi>
+        ) : (
+          <StyledLi>
+            <StyledLink to="/">회원가입</StyledLink>
+          </StyledLi>
+        )}
       </ul>
     </>
   );

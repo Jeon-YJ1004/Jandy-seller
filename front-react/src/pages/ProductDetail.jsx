@@ -63,7 +63,6 @@ function ProductDetail(props) {
       <Line />
 
       <div>
-        {" "}
         <Select onChange={selectOption}>
           <option>[필수] 옵션을 선택해 주세요 </option>
           <option disabled="true"> ------------------ </option>
