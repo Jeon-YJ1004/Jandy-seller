@@ -26,6 +26,7 @@ function Auth() {
       window.Kakao.init(REST_API_KEY);
       window.Kakao.Auth.setAccessToken(res.data.access_token);
       navigate("/profile", {replace: true});
+      console.log(code);
     } catch (err) {
       console.log(err)
     }

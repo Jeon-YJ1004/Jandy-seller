@@ -35,7 +35,6 @@ const StyledP = styled.p`
   width: 150px;
 `;
 const Price = styled.span`
-
   margin=14px 0px 0px;
   size="13px";
   `;
