@@ -23,6 +23,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/makeit" element={<Makeit />} />
           <Route path="/factory" element={<Factory />} />
+          <Route path="/myMarket" element={<Mymarket />} />
         </Routes>
       </Router>
     </div>
