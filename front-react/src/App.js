@@ -8,8 +8,10 @@ import Main from "./pages/Main";
 import ProductDetail from "./pages/ProductDetail";
 import Makeit from "./pages/Makeit";
 import Factory from "./pages/Factory";
+import {store} from './index'
 
 function App() {
+  window.store = store;
   return (
     <div className="App">
       <Router>
