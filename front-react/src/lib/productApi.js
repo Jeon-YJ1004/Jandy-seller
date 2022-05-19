@@ -102,5 +102,4 @@ export const productSlice = createSlice({
   },
 });
 
-// export const { setPrd, getAllPrdDB, getPrdDetailDB, createPrdDB, deletePrdDB } =
-//   productSlice.actions;
+export default productSlice.reducer;

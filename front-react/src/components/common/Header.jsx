@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { actionType as userActions } from "../../lib/userApi";
+import { userSlice } from "../../lib/userApi";
 
 function Header() {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ function Header() {
             <StyledLink
               to="/"
               onClick={() => {
-                dispatch(userActions.logOut());
+                dispatch(userSlice.logout());
               }}
             >
               로그아웃

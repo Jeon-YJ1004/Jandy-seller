@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Banner from "../components/mainPage/Banner";
 // import product_list from "../assets/json/product_list.js";
 import { Header, SearchBox, Product } from "../components/common";
-import { actionType as prdActions } from "../lib/productApi";
+import productSlice from "../lib/productApi";
 
 function Main() {
   //로컬json으로
@@ -16,7 +16,6 @@ function Main() {
 
   useEffect(() => {
     // 상품 리스트를 db에서 받아오기
-    dispatch(prdActions.getAllPrdDB());
   }, []);
   return (
     <>
