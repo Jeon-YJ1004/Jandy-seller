@@ -1,88 +1,54 @@
 import axios from "axios";
-import { createAction, handleAction, handleActions } from "redux-actions";
-
-//redux action type
-const SET_USER = "SET_USER";
-const GET_USER = "GET_USER";
-const LOG_OUT = "LOG_OUT";
-
-//redux action func
-const setUser = createAction(SET_USER, (user) => ({ user }));
-const getUser = createAction(GET_USER, (user) => ({ user }));
-const logOut = createAction(LOG_OUT, (user) => ({ user }));
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 //!!!!!!aws 정보 입력해야함!!!
 const API_BASE_URL = "";
 
-const initialState = {
-  user: null,
-  is_login: false,
-};
+const user = JSON.parse(localStorage.getItem("user"));
 
-// const getToken = () => {
-//   const token =
-//     Storage.local.get("__AUTH__") || Storage.session.get("__AUTH__");
-//   return `Bearer ${token}`;
-// };
-
-const loginDB = (id, password) => {
-  return function (dispatch, getState, { history }) {
-    axios({
-      method: "post",
-      url: API_BASE_URL + "/user/login",
-      data: {
-        email: id,
-        password: password,
-      },
-      // headers: {
-      //   Authorization: getToken(),
-      // },
-    })
-      .then((res) => {
-        console.log(res);
-        dispatch(
-          setUser({
-            email: res.data.email,
-            nickname: res.data.nickname,
-          })
-        );
-        document.location.href = "/";
-      })
-      .catch((error) => {
-        console.log(error);
+const login = createAsyncThunk(
+  "user/login",
+  async ({ userid, password }, thunkAPI) => {
+    try {
+      const response = await axios.post(API_BASE_URL + "/user/login", {
+        userid,
+        password,
       });
-  };
-};
-
-const logoutDB = () => {
-  return function (dispatch, getState, { history }) {
-    dispatch(logOut());
-    history.replace("/");
-  };
-};
-
-export default handleActions(
-  {
-    [SET_USER]: (state, action) => {
-      state.user = action.payload.user;
-      state.is_login = true;
-    },
-    [LOG_OUT]: (state, action) => {
-      state.user = null;
-      state.is_login = false;
-      //세션 토큰 삭제
-    },
-    [GET_USER]: (state, action) => {},
-  },
-  initialState
+      if (response.data.accessToken) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+      }
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
 );
 
-//action creator export
-const actionType = {
-  logOut,
-  getUser,
-  loginDB,
-  logoutDB,
-};
+const logout = createAsyncThunk("user/logout", async () => {
+  localStorage.removeItem("user");
+});
 
-export { actionType };
+const initialState = user
+  ? { isLoggedIn: true, user }
+  : { isLoggedIn: false, user: null };
+
+export const userSlice = createSlice({
+  name: "user",
+  initialState,
+  extraReducers: {
+    [login.fulfilled]: (state, action) => {
+      state.isLoggedIn = true;
+      state.user = action.payload.user;
+    },
+    [login.rejected]: (state, action) => {
+      state.isLoggedIn = false;
+      state.user = null;
+    },
+    [logout.fulfilled]: (state, action) => {
+      state.isLoggedIn = false;
+      state.user = null;
+    },
+  },
+});
+// const { reducer } = userSlice;
+// export default reducer;
