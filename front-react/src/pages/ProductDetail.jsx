@@ -59,13 +59,13 @@ function ProductDetail(props) {
       <div>{product}</div>
       <Line />
 
-      <di>판매기간 </di>
+      <div>판매기간 </div>
       <Line />
 
       <div>
         <Select onChange={selectOption}>
           <option>[필수] 옵션을 선택해 주세요 </option>
-          <option disabled="true"> ------------------ </option>
+          <option> ------------------ </option>
         </Select>
       </div>
       <Button onClick={setShoppingBasket}>장바구니</Button>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import { userSlice } from "../../lib/userApi";
 
-function Header() {
+function Header(props) {
   const dispatch = useDispatch();
   const user_info = useSelector((state) => state.user.user);
   // const is_login = getCookie("is_login");

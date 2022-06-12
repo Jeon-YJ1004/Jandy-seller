@@ -2,7 +2,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 //!!!!!!aws 정보 입력해야함!!!
-const API_BASE_URL = "";
+const API_BASE_URL = "http://3.39.222.68:8080/api/v1";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -35,6 +35,11 @@ const initialState = user
 export const userSlice = createSlice({
   name: "user",
   initialState,
+  reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload.users;
+    },
+  },
   extraReducers: {
     [login.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
@@ -51,4 +56,4 @@ export const userSlice = createSlice({
   },
 });
 
-export default userSlice.reducer;
+export default userSlice;

@@ -6,16 +6,16 @@ import Banner from "../components/mainPage/Banner";
 // import product_list from "../assets/json/product_list.js";
 import { Header, SearchBox, Product } from "../components/common";
 import productSlice from "../lib/productApi";
+import { getAllPrdDB } from "../lib/productApi";
 
 function Main() {
-  //로컬json으로
-  // const prd_list = product_list;
-
   const prd_list = useSelector((state) => state.prd.list);
   const dispatch = useDispatch();
 
   useEffect(() => {
     // 상품 리스트를 db에서 받아오기
+    dispatch(getAllPrdDB());
+    console.log(prd_list);
   }, []);
   return (
     <>

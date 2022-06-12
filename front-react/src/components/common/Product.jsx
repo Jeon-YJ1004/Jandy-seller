@@ -4,13 +4,16 @@ import styled from "styled-components";
 // import PropTypes from "prop-types";
 
 function Product(props) {
-  const detailURL = `detail/${props.id}`;
+  const detailURL = `/product/detail/${props.id}`;
   return (
     <>
       <StyledLink to={detailURL}>
-        {/* <img></img> */}
-        <StyledP>{props.name}</StyledP>
-        <Price>{props.price}</Price>
+        <img src={props.image} alt="상품이미지"></img>
+        <StyledP>{props.store}</StyledP>
+
+        <StyledP>{props.item}</StyledP>
+
+        {/* <Price>{props.price}</Price> */}
         <Unit>원</Unit>
       </StyledLink>
     </>

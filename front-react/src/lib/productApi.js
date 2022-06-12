@@ -1,18 +1,19 @@
 import { createAction, handleActions } from "redux-actions";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import product_list from "../assets/json/product_list";
 
 // //!!!!!!aws 정보 입력해야함!!!
-const API_BASE_URL = "";
+const API_BASE_URL = "http://3.39.222.68:8080/api/v1";
 
 const initialState = {
-  list: [],
+  list: product_list,
   tatus: "idle", //'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
 };
 
 // //상품 리스트 get
-const getAllPrdDB = createAsyncThunk("product/SET_PRD", async () => {
+export const getAllPrdDB = createAsyncThunk("product/SET_PRD", async () => {
   try {
     const response = await axios.get(API_BASE_URL + "/product");
     return [...response.data];
@@ -21,7 +22,7 @@ const getAllPrdDB = createAsyncThunk("product/SET_PRD", async () => {
   }
 });
 
-const getPrdDetailDB = createAsyncThunk(
+export const getPrdDetailDB = createAsyncThunk(
   "product/GET_DETAIL_PRD",
   async (id) => {
     try {
@@ -33,19 +34,22 @@ const getPrdDetailDB = createAsyncThunk(
   }
 );
 
-const createPrdDB = createAsyncThunk("product/CREATE_PRD", async (prdData) => {
-  try {
-    const response = await axios.post(
-      API_BASE_URL + `/product/create`,
-      JSON.stringify(prdData)
-    );
-    return response.data;
-  } catch (err) {
-    return err.message;
+export const createPrdDB = createAsyncThunk(
+  "product/CREATE_PRD",
+  async (prdData) => {
+    try {
+      const response = await axios.post(
+        API_BASE_URL + `/product/create`,
+        JSON.stringify(prdData)
+      );
+      return response.data;
+    } catch (err) {
+      return err.message;
+    }
   }
-});
+);
 
-const updatePrdDB = createAsyncThunk(
+export const updatePrdDB = createAsyncThunk(
   "product/UPDATE_PRD",
   async ({ id, prdData }) => {
     try {
@@ -60,16 +64,19 @@ const updatePrdDB = createAsyncThunk(
   }
 );
 
-const deletePrdDB = createAsyncThunk("product/DELETE_PRD", async (id) => {
-  try {
-    const response = await axios.delete(API_BASE_URL + `/product/${id}`);
-    return response.data.id;
-  } catch (err) {
-    return err.message;
+export const deletePrdDB = createAsyncThunk(
+  "product/DELETE_PRD",
+  async (id) => {
+    try {
+      const response = await axios.delete(API_BASE_URL + `/product/${id}`);
+      return response.data.id;
+    } catch (err) {
+      return err.message;
+    }
   }
-});
+);
 
-export const productSlice = createSlice({
+const productSlice = createSlice({
   name: "product",
   initialState: initialState,
   reducers: {
@@ -102,4 +109,4 @@ export const productSlice = createSlice({
   },
 });
 
-export default productSlice.reducer;
+export default productSlice;
