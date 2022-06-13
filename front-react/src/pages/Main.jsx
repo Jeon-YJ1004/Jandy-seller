@@ -9,6 +9,10 @@ import productSlice from "../lib/productApi";
 import { getAllPrdDB } from "../lib/productApi";
 
 function Main() {
+  // 쿠키에 로그인 세션이 있는지 확인
+  // if(isLogin(true){
+  //   dispatch(useActions.checkLoginDB());
+  // })
   const prd_list = useSelector((state) => state.prd.list);
   const dispatch = useDispatch();
 
@@ -28,6 +32,7 @@ function Main() {
         {prd_list.map((product) => {
           return <Product key={product.id} id={product.id} {...product} />;
         })}
+        \
       </Container>
     </>
   );

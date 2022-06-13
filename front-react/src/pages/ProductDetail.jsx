@@ -2,19 +2,25 @@ import { React, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/common/Header";
-import product_list from ".././assets/json/product_list.js";
 import swal from "sweetalert";
+import { useSelector, useDispatch } from "react-redux";
+import productSlice from "../lib/productApi";
+import { getPrdDetailDB } from "../lib/productApi";
 
 function ProductDetail(props) {
-  // const id = props.match.params.id;
-  // const prd_list = product_list.product;
-  // const product = prd_list[prd_list.findIndex((p) => p.id === id)];
-  const product = product_list.filter((prd) => prd.id === props.id);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const prd_list = useSelector((state) => state.prd.list);
+  // const prd_idx=prd_list.findIndex((p)=>p.pr) = prd_list[prd_list.findIndex((p) => p.id === id)];
+  const product = prd_list[id];
+  const prd = product.stringfy();
   useEffect(() => {
     //db에서 product 조회
-  });
+    dispatch(getPrdDetailDB(id));
+  }, []);
 
   //상품 구매를 위한 옵션
+
   const [option, setOption] = useState([]);
   const [count, setCount] = useState(0);
 
