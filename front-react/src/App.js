@@ -1,5 +1,10 @@
 import { React, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 
@@ -17,6 +22,8 @@ import {
 import { history } from "./lib/history.js";
 
 function App() {
+  const user = localStorage.getItem("user");
+
   return (
     <div className="App">
       <Router>
@@ -26,6 +33,14 @@ function App() {
           <Route path="/login" element={<KakaoLogin />} />
           <Route path="/oauth/kakao/login/" element={<Auth />} />
           <Route path="/profile" element={<Profile />} />
+          {/* <Route
+            path="/mypage"
+            element={user ? <Mypage /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/myMarket"
+            element={user ? <Mymarket /> : <Navigate to="/login" />}
+          /> */}
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/myMarket" element={<Mymarket />} />
           <Route path="/product/register" element={<ProductRegister />} />

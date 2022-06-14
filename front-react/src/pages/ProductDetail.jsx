@@ -13,7 +13,7 @@ function ProductDetail(props) {
   const prd_list = useSelector((state) => state.prd.list);
   // const prd_idx=prd_list.findIndex((p)=>p.pr) = prd_list[prd_list.findIndex((p) => p.id === id)];
   const product = prd_list[id];
-  const prd = product.stringfy();
+  console.log(product);
   useEffect(() => {
     //db에서 product 조회
     dispatch(getPrdDetailDB(id));
@@ -62,7 +62,7 @@ function ProductDetail(props) {
   return (
     <>
       <Header />
-      <div>{product}</div>
+      <div>{product.name}</div>
       <Line />
 
       <div>판매기간 </div>

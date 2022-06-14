@@ -8,6 +8,7 @@ import {
   Checkbox,
   FormControlLabel,
 } from "@material-ui/core";
+import styled from "styled-components";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 function ProductRegister() {

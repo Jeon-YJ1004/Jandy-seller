@@ -28,7 +28,6 @@ function Main() {
         <Banner />
         인기 해쉬테그
         <SearchBox />
-        주제
         {prd_list.map((product) => {
           return <Product key={product.id} id={product.id} {...product} />;
         })}
