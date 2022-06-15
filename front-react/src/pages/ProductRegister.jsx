@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useRef } from "react";
 import {
   Grid,
   Box,
@@ -7,28 +7,36 @@ import {
   TextField,
   Checkbox,
   FormControlLabel,
+  Divider,
 } from "@material-ui/core";
 import styled from "styled-components";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-
+import UploadImg from "../components/common/UploadImg";
 function ProductRegister() {
   const initTag = ["키링", "레이스", "봄", "여름"];
   const opt_lst = ["옵션 타입", "옵션 명", "옵션값", "필수"];
   const [options, setOptions] = useState([]);
   const [optionInfo, setOptionInfo] = useState([]);
 
+  const productImg = useRef();
+
   const setOption = (e) => {
     // let optList=[];
     // optList.push(e.value)
     setOptionInfo((current) => current.push(e.value));
   };
+
   return (
     <>
       {/* 헤더 */}
       {/* 상품 등록 div */}
       <Typography variant="h6" gutterBottom>
-        상품 등록
+        상품 정보
       </Typography>
+      기본정보
+      <Divider />
+      상품 이미지 사진
+      <UploadImg />
       <Grid
         container
         direction="column"
@@ -112,5 +120,5 @@ function ProductRegister() {
     </>
   );
 }
-
+const InputImg = styled.input``;
 export default ProductRegister;

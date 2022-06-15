@@ -21,11 +21,10 @@ function Product(props) {
 }
 
 const StyledLink = styled(Link)`
-  overflow:"hidden;
+  overflow: hidden;
   textoverflow: ellipsis;
   whitespace: nowrap;
   width: 272px;
-
 `;
 const StyledP = styled.p`
   font-weight: bold;
@@ -38,10 +37,9 @@ const StyledP = styled.p`
   width: 150px;
 `;
 const Price = styled.span`
-
-  margin=14px 0px 0px;
-  size="13px";
-  `;
+  margin: 14px 0px 0px;
+  size: 13px;
+`;
 const Unit = styled.span`
   font-size: 0.7em;
   color: gray;
