@@ -7,10 +7,9 @@ function KakaoLogout() {
     const navigate = useNavigate();
     const logoutKakao = async () => {
         try {
-            let res = await window.Kakao.API.request({
-                url: "/v1/user/logout",
-            });
-            console.log(res);
+            sessionStorage.removeItem('token');
+            localStorage.removeItem('token');
+            sessionStorage.removeItem('token');
             navigate('/', {replace: true});
         } catch(err) {
             console.log(err);

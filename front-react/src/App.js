@@ -6,12 +6,11 @@ import Auth from "./pages/kakao/Auth.js";
 import Profile from "./pages/kakao/Profile.js";
 import Main from "./pages/Main";
 import ProductDetail from "./pages/ProductDetail";
-import Makeit from "./pages/Makeit";
-import Factory from "./pages/Factory";
-import {store} from './index'
+import MakeitHome from "./pages/Makeit/MakeitHome";
+import MakeitCategory from "./pages/Makeit/MakeitCategory";
+import Logout from "./pages/kakao/Logout";
 
 function App() {
-  window.store = store;
   return (
     <div className="App">
       <Router>
@@ -19,11 +18,11 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/detail/:id" element={<ProductDetail />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/oauth/kakao/login/" element={<Auth />} />
+          <Route path="/logout" element={<Logout />}/>
+          <Route path="/auth" element={<Auth />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/makeit" element={<Makeit />} />
-          <Route path="/factory" element={<Factory />} />
-          <Route path="/myMarket" element={<Mymarket />} />
+          <Route path="/makeit" element={<MakeitHome />} />
+          <Route path="/makeit/category" element={<MakeitCategory />} />
         </Routes>
       </Router>
     </div>

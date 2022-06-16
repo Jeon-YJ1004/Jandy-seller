@@ -1,13 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MenuIcon from '@mui/icons-material/Menu';
+import styled from 'styled-components';
+import {Box, Container} from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import   { selectItemType } from '../../reducers/category';
 
+function OptionSelector() {
+  const dispatch = useDispatch();
+  const Type = useSelector((state) => state.category.value.itemtype);
+  console.log(Type);
 
-function OptionSelecter() {
-    //아직 select가 안됨 1순위 작업!!
-   const options = [
+   const itemtypes = [
        "의류",
        "스티커/지류",
        "키링",
@@ -15,7 +21,7 @@ function OptionSelecter() {
        "포장용품"
    ]
 
-   const ITEM_HEIGHT = options.length
+   const ITEM_HEIGHT = itemtypes.length
    const [selected, setselected] = useState(0);
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -31,10 +37,16 @@ function OptionSelecter() {
     const handleMenuItemClick = (event, index) => {
         setAnchorEl(null);
         setselected(index);
+        dispatch(selectItemType(
+          {Location: "Makeit", itemtype: itemtypes[index]}
+        ))
     }
+    
 
   return (
     <div>
+    <Container sx={{height: '200px', backgroundColor: '#FFE664'}}>
+    <FlexDiv>
     <IconButton
         aria-label="more"
         id="long-button"
@@ -43,7 +55,9 @@ function OptionSelecter() {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <MoreVertIcon />
+        <Box>
+        <MenuIcon />
+        </Box>
       </IconButton>
       <Menu
         id="long-menu"
@@ -60,17 +74,30 @@ function OptionSelecter() {
           },
         }}
       >
-        {options.map((option, index) => (
+        {itemtypes.map((option, index) => (
           <MenuItem key={option} value={option} 
-          selected={option === options[0]} 
+          selected={option === itemtypes[0]} 
           onClick={(event) => handleMenuItemClick(event, index)}>
             {option}
           </MenuItem>
         ))}
       </Menu>
-      <h1>{options[selected]}</h1>
+      <StyledH>{itemtypes[selected]}</StyledH>
+    </FlexDiv>
+    </Container>
     </div>
   )
 }
 
-export default OptionSelecter
+const FlexDiv = styled.div`
+  display: flex;
+  text-align : center;
+  vertical-align: middle;
+  position: relative;
+  top: 40%;
+`
+
+const StyledH = styled.h1`
+  margin: 0 auto;
+`
+export default OptionSelector

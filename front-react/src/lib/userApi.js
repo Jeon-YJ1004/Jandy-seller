@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createAction, handleAction, handleActions } from "redux-actions";
 
+
 //redux action type
 const SET_USER = "SET_USER";
 const GET_USER = "GET_USER";
@@ -35,7 +36,7 @@ const loginDB = (id, password) => {
         password: password,
       },
       // headers: {
-      //   Authorization: getToken(),
+      //   Authorization: getTok로그en(),
       // },
     })
       .then((res) => {

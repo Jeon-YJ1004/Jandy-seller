@@ -63,7 +63,6 @@ function ProductDetail(props) {
       <Line />
 
       <div>
-        {" "}
         <Select onChange={selectOption}>
           <option>[필수] 옵션을 선택해 주세요 </option>
           <option disabled="true"> ------------------ </option>
@@ -76,7 +75,6 @@ function ProductDetail(props) {
 }
 const Line = styled.hr`
   border: solid 0.2px #ebebeb;
-  align: center;
   width: 92%;
 `;
 const Select = styled.select`

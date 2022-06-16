@@ -1,45 +1,47 @@
-import React, { useEffect } from 'react';
-import axios from 'axios';
-import qs from "qs";
+import React, {useEffect} from 'react';
+import { useCookies } from 'react-cookie';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import {
-  REDIRECT_URI,
-  REST_API_KEY,
-} from "./kakao_config.js"
 
 function Auth() {
-    const code = new URL(window.location.href).searchParams.get("code");
+    const token = new URL(window.location.href).searchParams.get("token");
+    const nickname = new URL(window.location.href).searchParams.get("nickname");
+    const [cookies, setCookie] = useCookies(['token']);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const getToken = async () => {
-      const payload = qs.stringify({
-        grant_type: "authorization_code",
-        client_id: REST_API_KEY,
-        redirect_uri: REDIRECT_URI,
-        code: code,
-      });
-    try {
-      const res = await axios.post(
-        "https://kauth.kakao.com/oauth/token",
-        payload
-      );
-      window.Kakao.init(REST_API_KEY);
-      window.Kakao.Auth.setAccessToken(res.data.access_token);
-      navigate("/profile", {replace: true});
-      console.log(code);
-    } catch (err) {
-      console.log(err)
+    const setToken = async () => {
+      const expires = new Date()
+      expires.setDate(expires.getDate() + 1);
+        if (token) {
+          //쿠키 저장
+          setCookie('token', token, { path : '/', expires : expires});
+          //세션 저장
+          sessionStorage.setItem('token', token);
+          //로컬 저장
+          localStorage.setItem('token', token);
+        }
     }
-  }
-  useEffect(() => {
-    getToken();
-  });
-  
+
+    const setNickname = () => {
+      if (nickname !== null || nickname !== "") {
+        //유저 닉네임 state저장
+        navigate('/', {replace: true});
+      }
+    }
+
+    useEffect(() => {
+      setToken();
+      setNickname();
+    })
+
   return (
     <div>
-        {code}
+      {token}
     </div>
   )
 }
-
 export default Auth
+
+
+

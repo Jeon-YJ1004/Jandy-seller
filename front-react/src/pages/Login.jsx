@@ -15,7 +15,7 @@ function Login() {
         <Grid item xs={10} md={4} display='flex' sx={{alignItems: 'center'}}>
             <Box sx={{width: '100%', textAlign: 'center'}}>
                 <StyledH2>로그인</StyledH2>
-                <StyledP>M Square의 다양한 서비스를 이용하려면 로그인이 필요합니다!</StyledP>
+                <StyledP>M2M의 다양한 서비스를 이용하려면 로그인이 필요합니다!</StyledP>
                 <KakaoLogin />
                 <hr></hr>
                 <StyledP>기존 계정으로 간편 가입이 가능합니다!</StyledP>
