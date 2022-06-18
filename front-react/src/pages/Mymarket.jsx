@@ -11,12 +11,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { History } from "history";
 import Product from "../components/common/Product";
 import EditIcon from "@mui/icons-material/Edit";
+import { getCatPrdDB } from "../lib/productApi";
 function Mymarket() {
   /* 디비에 저장된 마켓 이름과 사진이 있다면 세팅.
 
   없으면 기본 이미지 세팅, 등록하기 버튼
   만약 유저가 세팅하면 디비에 post 
   */
+  const prd_list = useSelector((state) => state.prd.list);
   const dispatch = useDispatch();
   const user_info = useSelector((state) => state.user.user);
   const [market, setMarket] = useState({
@@ -29,7 +31,10 @@ function Mymarket() {
   const categorys = ["전체", "스티커", "키링", "핸드폰"];
   const [category, setCategory] = useState("전체");
 
-  useEffect(() => {});
+  useEffect(() => {
+    // 상품 리스트를 db에서 받아오기
+    dispatch(getCatPrdDB());
+  }, []);
 
   const changeMarketName = (e) => {
     const eTarget = e.target.value;
@@ -89,10 +94,19 @@ function Mymarket() {
       </CategoryNav>
 
       {/* 판매 상품 card */}
-      {market.products ? (
-        <Product category={category} />
+      {user_info ? (
+        prd_list.map((product) => {
+          return (
+            <Product
+              key={product.id}
+              id={product.id}
+              category={category}
+              {...product}
+            />
+          );
+        })
       ) : (
-        <Link to="/product/register"> 상품 등록하기</Link>
+        <Link to="/market/register"> 마켓 등록하기</Link>
       )}
     </>
   );

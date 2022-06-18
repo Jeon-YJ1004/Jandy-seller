@@ -8,7 +8,7 @@ const API_BASE_URL = "http://3.39.222.68:8080/api/v1";
 
 const initialState = {
   list: product_list,
-  tatus: "idle", //'idle' | 'loading' | 'succeeded' | 'failed'
+  status: "idle", //'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
 };
 
@@ -21,7 +21,17 @@ export const getAllPrdDB = createAsyncThunk("product/SET_PRD", async () => {
     return err.message;
   }
 });
-
+// export const getCatPrdDB = createAsyncThunk(
+//   "product/GET_PRD",
+//   async (category) => {
+//     try {
+//       const response = await axios.get(API_BASE_URL + `/product/${category}`);
+//       return [...response.data];
+//     } catch (err) {
+//       return err.message;
+//     }
+//   }
+// );
 export const getPrdDetailDB = createAsyncThunk(
   "product/GET_DETAIL_PRD",
   async (id) => {

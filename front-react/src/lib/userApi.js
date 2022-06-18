@@ -6,7 +6,7 @@ const API_BASE_URL = "http://3.39.222.68:8080/api/v1";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
-const login = createAsyncThunk(
+export const login = createAsyncThunk(
   "user/login",
   async ({ userid, password }, thunkAPI) => {
     try {
@@ -24,13 +24,15 @@ const login = createAsyncThunk(
   }
 );
 
-const logout = createAsyncThunk("user/logout", async () => {
+export const logout = createAsyncThunk("user/logout", async () => {
   localStorage.removeItem("user");
 });
 
-const initialState = user
-  ? { isLoggedIn: true, user }
-  : { isLoggedIn: false, user: null };
+const initialState = {
+  isLoggedIn: user
+    ? { isLoggedIn: true, user }
+    : { isLoggedIn: false, user: null },
+};
 
 export const userSlice = createSlice({
   name: "user",
