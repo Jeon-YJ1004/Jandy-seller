@@ -8,6 +8,7 @@ import {
 import { useDispatch } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 
+import "./App.css";
 import Login from "./pages/Login";
 import Auth from "./pages/kakao/Auth.js";
 import Profile from "./pages/kakao/Profile.js";

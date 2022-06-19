@@ -32,7 +32,7 @@ function Main() {
   }, []);
   return (
     <>
-      <Container>
+      <Grid>
         <Header />
         <Banner />
         <Grid margin="25px 0 0 0">
@@ -66,7 +66,7 @@ function Main() {
         {/* {prd_list.map((product) => {
           return <Product key={product.id} id={product.id} {...product} />;
         })} */}
-      </Container>
+      </Grid>
     </>
   );
 }
