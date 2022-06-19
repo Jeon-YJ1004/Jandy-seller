@@ -6,22 +6,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import styled from 'styled-components';
 import {Box, Container} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import   { selectItemType } from '../../reducers/category';
+import {selectCate} from '../../reducers/categoryApi' 
 
 function OptionSelector() {
-  const dispatch = useDispatch();
-  const Type = useSelector((state) => state.category.value.itemtype);
-  console.log(Type);
+   const dispatch = useDispatch();
+   const allCategories = useSelector((state) => state.category.allCategories);
 
-   const itemtypes = [
-       "의류",
-       "스티커/지류",
-       "키링",
-       "핸드폰 액세서리",
-       "포장용품"
-   ]
-
-   const ITEM_HEIGHT = itemtypes.length
+   const ITEM_HEIGHT = allCategories ? allCategories.length : 0;
    const [selected, setselected] = useState(0);
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -37,12 +28,12 @@ function OptionSelector() {
     const handleMenuItemClick = (event, index) => {
         setAnchorEl(null);
         setselected(index);
-        dispatch(selectItemType(
-          {Location: "Makeit", itemtype: itemtypes[index]}
+        console.log(index);
+        dispatch(selectCate(
+          allCategories[index]
         ))
     }
     
-
   return (
     <div>
     <Container sx={{height: '200px', backgroundColor: '#FFE664'}}>
@@ -74,15 +65,15 @@ function OptionSelector() {
           },
         }}
       >
-        {itemtypes.map((option, index) => (
-          <MenuItem key={option} value={option} 
-          selected={option === itemtypes[0]} 
+        {ITEM_HEIGHT !== 0 ? allCategories.map((option, index) => (
+          <MenuItem key={option.id} value={option.name} 
+          selected={option.name === allCategories[0].name} 
           onClick={(event) => handleMenuItemClick(event, index)}>
-            {option}
+            {option.name}
           </MenuItem>
-        ))}
+        )) : <div></div>}
       </Menu>
-      <StyledH>{itemtypes[selected]}</StyledH>
+      <StyledH>{ITEM_HEIGHT !== 0 ? allCategories[selected].name : ""}</StyledH>
     </FlexDiv>
     </Container>
     </div>

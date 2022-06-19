@@ -6,7 +6,6 @@ import { useCookies } from "react-cookie";
 
 function Header(props) {
   const dispatch = useDispatch();
-<<<<<<< HEAD
   const user_nickname = useSelector(state => state.user.value.nickname);
   const logined = useSelector(state => state.user.value.logined);
   const [user_cookies, setCookie] = useCookies(['user_token']);
@@ -20,12 +19,6 @@ function Header(props) {
     
   }, [user_cookies])
   
-=======
-  const user_nickname = useSelector((state) => state.user.userNickname);
-  const logined = useSelector((state) => state.user.Logined);
-  const [cookies, setCookie] = useCookies(["token"]);
-  // const is_login = getCookie("is_login");
->>>>>>> 9b961bce4661aac9f57352c546f550d7a36888e4
 
   return (
     <>

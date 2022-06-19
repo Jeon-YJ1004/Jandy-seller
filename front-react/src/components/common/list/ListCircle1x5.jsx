@@ -8,6 +8,7 @@ function ListCircle1x5({header, onClickHandler}) {
       id: 1,
       name : "의류",
       img : "",
+      
     }, {
       id: 2,
       name : "스티커/지류",

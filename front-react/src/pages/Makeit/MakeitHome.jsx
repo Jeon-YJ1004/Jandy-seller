@@ -7,9 +7,16 @@ import ListSquare1x5 from '../../components/common/list/ListSquare1x5'
 import ListSquare1x4 from '../../components/common/list/ListSquare1x4'
 import Header from '../../components/common/Header'
 import SearchBox from '../../components/common/SearchBox'
+import { useNavigate } from 'react-router-dom'
 
 function MakeitHome() {
+  const navigate = useNavigate();
   const headers = ["카테고리", "이번주 가장 인기 많은 제품!", "이 제품 어때요?"];
+
+   const onClickHandler = (e) => {
+    console.log(e.name);
+    navigate('/makeit/category', {selected : e.name})
+   }
   return (
     <div>
       <Header/>
@@ -17,7 +24,7 @@ function MakeitHome() {
       <Container sx={{alignItems: 'center'}}>
         <Box maxWidth="lg" minWidth="sm">
             <SearchBox/>
-              <ListCircle1x5 header={headers[0]}></ListCircle1x5>
+              <ListCircle1x5 header={headers[0]} onClickHandler={onClickHandler}></ListCircle1x5>
               <Divider></Divider>
               <ListSquare1x4 header={headers[1]}></ListSquare1x4>
               <Divider></Divider>

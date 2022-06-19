@@ -1,33 +1,32 @@
 import { Box, Container } from '@mui/material'
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectItemOption } from '../../reducers/category'
 import styled from 'styled-components'
 
-function DetailOptionSelector({label}) {
-    const dispatch = useDispatch();
-    const itemoptions = useSelector(state => state.category.value.itemoptions);
-    const selectedOptions = useSelector(state => state.category.value.selectedOptions);
-    const options = itemoptions[label];
-    const optionClickHandler = (option) => {
-        let payload = {};
-        payload[label] = option;
-        dispatch(selectItemOption(payload))
+function DetailOptionSelector() {
+    const allCategories = useSelector((state) => state.category.allCategories);
+    const selectedOptions = useSelector((state) => state.category.selected);
+    
+    const subCate = selectedOptions.subcategory ?? [];
+    console.log(subCate);
+    console.log(allCategories, selectedOptions);
+
+    const optionClickHandler = (cateID) => {
+        console.log(cateID)
     }
-    console.log(selectedOptions[label]);
 
   return (
     <div>
         <Container sx={{border : 'solid 1.5px black', height: '100px', p: 4, mt : 4}}>
             <Box display="grid" gridTemplateColumns="repeat(6,1fr)" gap={2}>
-                <Label>{label}</Label>
-                {options && options.map((option, index) => 
+                <Label>소분류</Label>
+                {subCate.map((option, index) => 
                 <div key={index}>
                   <Box sx={{
                     justifyContent: "center"
                     }}>
-                    <Option onClick={() => optionClickHandler(option)} id={option == selectedOptions[label] ? 'isSelected' : 'none'}>
-                        {option}
+                    <Option onClick={() => optionClickHandler(option.id)}>
+                        {option.name}
                     </Option>
                     </Box>  
                 </div>
