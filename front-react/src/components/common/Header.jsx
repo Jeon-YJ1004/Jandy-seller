@@ -73,6 +73,7 @@ const StyledLi = styled.li`
 const StyledLink = styled(Link)`
   text-decoration: none;
   cursor: pointer;
+  font-size: 20px;
 `;
 
 export default Header;
