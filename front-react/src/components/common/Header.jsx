@@ -4,11 +4,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
-function Header() {
+function Header(props) {
   const dispatch = useDispatch();
   const user_nickname = useSelector((state) => state.user.userNickname);
   const logined = useSelector((state) => state.user.Logined);
-  const [cookies, setCookie] = useCookies(['token']);
+  const [cookies, setCookie] = useCookies(["token"]);
   // const is_login = getCookie("is_login");
 
   return (
@@ -44,11 +44,7 @@ function Header() {
         )}
         {logined ? (
           <StyledLi>
-            <StyledLink
-              to="/logout"
-            >
-              로그아웃
-            </StyledLink>
+            <StyledLink to="/logout">로그아웃</StyledLink>
           </StyledLi>
         ) : (
           <StyledLi>
