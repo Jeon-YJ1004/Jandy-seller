@@ -2,11 +2,11 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 //!!!!!!aws 정보 입력해야함!!!
-const API_BASE_URL = "http://3.39.222.68:8080/api/v1";
+const API_BASE_URL = "";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
-export const login = createAsyncThunk(
+const login = createAsyncThunk(
   "user/login",
   async ({ userid, password }, thunkAPI) => {
     try {
@@ -24,15 +24,13 @@ export const login = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk("user/logout", async () => {
+const logout = createAsyncThunk("user/logout", async () => {
   localStorage.removeItem("user");
 });
 
-const initialState = {
-  isLoggedIn: user
-    ? { isLoggedIn: true, user }
-    : { isLoggedIn: false, user: null },
-};
+const initialState = user
+  ? { isLoggedIn: true, user }
+  : { isLoggedIn: false, user: null };
 
 export const userSlice = createSlice({
   name: "user",

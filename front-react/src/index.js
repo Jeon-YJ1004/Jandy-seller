@@ -3,10 +3,11 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import store from "./store-config";
 import { Provider } from "react-redux";
+import { CookiesProvider } from "react-cookie";
 
-import { userSlice } from "./lib/userApi";
-import store from "./lib/storageConfig";
+import { userSlice } from "./reducers/userApi";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -22,8 +23,10 @@ function loadUser() {
 }
 loadUser();
 root.render(
-  <Provider store={store()}>
-    <App />
+  <Provider store={store}>
+    <CookiesProvider>
+      <App />
+    </CookiesProvider>
   </Provider>
 );
 

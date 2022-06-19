@@ -4,7 +4,6 @@ import KakaoLogout from "./KakaoLogout";
 function Profile() {
   const [user_id, setuser_id] = useState();
   const [nickName, setnickName] = useState();
-  const [profileImage, setprofileImage] = useState();
 
   const getProfile = async () => {
     try {
@@ -13,7 +12,6 @@ function Profile() {
       });
       setuser_id(data.id);
       setnickName(data.properties.nickname);
-      setprofileImage(data.properties.profile_image);
     } catch (err) {
       console.log(err);
     }
@@ -22,15 +20,10 @@ function Profile() {
     getProfile();
   }, []);
 
-  useEffect(() => {
-    console.log(profileImage);
-  }, [profileImage]);
-
   return (
     <div>
       <h2>{user_id}</h2>
       <h2>{nickName}</h2>
-      <img src={profileImage} alt="profileImg"></img>
       <KakaoLogout />
     </div>
   );

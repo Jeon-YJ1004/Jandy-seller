@@ -5,13 +5,13 @@ import axios from "axios";
 import swal from "sweetalert";
 
 import ProductRegister from "./ProductRegister";
-import Header from "../components/common/Header";
-import { userSlice } from "./../lib/userApi";
+import Header from "../../components/common/Header";
+import { userSlice } from "../../reducers/userApi";
 import { useSelector, useDispatch } from "react-redux";
 import { History } from "history";
-import Product from "../components/common/Product";
+import Product from "../../components/common/Product";
 import EditIcon from "@mui/icons-material/Edit";
-import { getCatPrdDB } from "../lib/productApi";
+// import { getCatPrdDB } from "../reducers/productApi";
 function Mymarket() {
   /* 디비에 저장된 마켓 이름과 사진이 있다면 세팅.
 
@@ -33,7 +33,7 @@ function Mymarket() {
 
   useEffect(() => {
     // 상품 리스트를 db에서 받아오기
-    dispatch(getCatPrdDB());
+    // dispatch(getCatPrdDB());
   }, []);
 
   const changeMarketName = (e) => {

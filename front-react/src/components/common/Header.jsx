@@ -1,14 +1,16 @@
-import { React, useState } from "react";
+import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
-import { userSlice } from "../../lib/userApi";
+import { useCookies } from "react-cookie";
 
 function Header(props) {
   const dispatch = useDispatch();
-  const user_info = useSelector((state) => state.user.user);
+  const user_nickname = useSelector((state) => state.user.userNickname);
+  const logined = useSelector((state) => state.user.Logined);
+  const [cookies, setCookie] = useCookies(["token"]);
   // const is_login = getCookie("is_login");
+
   return (
     <>
       <Logo
@@ -23,7 +25,7 @@ function Header(props) {
           <StyledLink to="/">market</StyledLink>
         </StyledLi>
         <StyledLi>
-          <StyledLink to="/">make it</StyledLink>
+          <StyledLink to="/makeit">make it</StyledLink>
         </StyledLi>
         <StyledLi>
           <StyledLink to="/myMarket">my Market</StyledLink>
@@ -31,25 +33,18 @@ function Header(props) {
         <StyledLi>
           <StyledLink to="/mypage">my Page</StyledLink>
         </StyledLi>
-        {user_info ? (
+        {user_nickname ? (
           <StyledLi>
-            <StyledLink to="/">{user_info.name}님</StyledLink>
+            <StyledLink to="/">{user_nickname}님</StyledLink>
           </StyledLi>
         ) : (
           <StyledLi>
             <StyledLink to="/login">로그인</StyledLink>
           </StyledLi>
         )}
-        {user_info ? (
+        {logined ? (
           <StyledLi>
-            <StyledLink
-              to="/"
-              onClick={() => {
-                dispatch(userSlice.logout());
-              }}
-            >
-              로그아웃
-            </StyledLink>
+            <StyledLink to="/logout">로그아웃</StyledLink>
           </StyledLi>
         ) : (
           <StyledLi>

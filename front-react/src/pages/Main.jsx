@@ -5,8 +5,8 @@ import styled from "styled-components";
 import Banner from "../components/mainPage/Banner";
 // import product_list from "../assets/json/product_list.js";
 import { Header, SearchBox, Product } from "../components/common";
-import productSlice from "../lib/productApi";
-import { getAllPrdDB } from "../lib/productApi";
+import productSlice from "../reducers/productApi";
+import { getAllPrdDB } from "../reducers/productApi";
 
 function Main() {
   // 쿠키에 로그인 세션이 있는지 확인
@@ -31,7 +31,6 @@ function Main() {
         {prd_list.map((product) => {
           return <Product key={product.id} id={product.id} {...product} />;
         })}
-        \
       </Container>
     </>
   );

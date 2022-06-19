@@ -1,5 +1,3 @@
-import React from "react";
-
 const product_list = [
   {
     id: 0,
@@ -362,4 +360,20 @@ const product_list = [
     info: " 얇고 가벼운 폴리카보네이트 소재의 하드케이스입니다. 충격에 강하고 부드러운 그립감을 갖습니다. 화려하고 선명한 컬러 표현이 가능하며 긁힘과 색바램에 강합니다.   소재 : 폴리카보네이트 제조국 : Made in Korea   주의사항  모델컷의 경우 촬영장소의 환경에 따라 실제 색상과 상이할 수 있습니다. 오염 시 수건에 미지근한 물을 적셔 오염 부분을 닦아 주시기 바랍니다. 케이스 교체 시에 무리한 힘을 가하지 마십시오. 내구성이 우수하지만, 고열에서의 장시간 노출 시에는 변형이 올 수 있습니다. 카드수납은 불가능합니다.  ",
   },
 ];
-export default product_list;
+
+const factory_list = [
+  {
+    name: "옷1",
+    seller: "a",
+    id: 1,
+    price: 1000,
+  },
+  {
+    name: "옷2",
+    author: "b",
+    id: 2,
+    price: 2000,
+  },
+];
+
+export default product_list

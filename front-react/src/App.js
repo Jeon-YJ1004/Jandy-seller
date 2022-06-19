@@ -9,17 +9,15 @@ import { useDispatch } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 
 import "./App.css";
-import KakaoLogin from "./pages/kakao/KakaoLogin.js";
+import Login from "./pages/Login";
 import Auth from "./pages/kakao/Auth.js";
 import Profile from "./pages/kakao/Profile.js";
-import {
-  Mypage,
-  ProductDetail,
-  Main,
-  Mymarket,
-  ProductRegister,
-} from "./pages";
-import { history } from "./lib/history.js";
+import { ProductDetail, Mymarket, ProductRegister } from "./pages/market";
+import { MakeitHome, MakeitCategory } from "./pages/Makeit";
+import Main from "./pages/Main";
+import Mypage from "./pages/Mypage";
+import Logout from "./pages/kakao/Logout";
+import { history } from "./reducers/history.js";
 
 function App() {
   const user = localStorage.getItem("user");
@@ -29,10 +27,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/product/detail/:id" element={<ProductDetail />} />
-          <Route path="/login" element={<KakaoLogin />} />
-          <Route path="/oauth/kakao/login/" element={<Auth />} />
-          <Route path="/profile" element={<Profile />} />
           {/* <Route
             path="/mypage"
             element={user ? <Mypage /> : <Navigate to="/login" />}
@@ -44,6 +38,13 @@ function App() {
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/myMarket" element={<Mymarket />} />
           <Route path="/product/register" element={<ProductRegister />} />
+          <Route path="/product/detail/:id" element={<ProductDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/makeit" element={<MakeitHome />} />
+          <Route path="/makeit/category" element={<MakeitCategory />} />
         </Routes>
       </Router>
     </div>

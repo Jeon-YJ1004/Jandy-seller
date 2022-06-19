@@ -11,7 +11,8 @@ import {
 } from "@material-ui/core";
 import styled from "styled-components";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import UploadImg from "../components/common/UploadImg";
+import UploadImg from "../../components/common/UploadImg";
+
 function ProductRegister() {
   const initTag = ["키링", "레이스", "봄", "여름"];
   const opt_lst = ["옵션 타입", "옵션 명", "옵션값", "필수"];
