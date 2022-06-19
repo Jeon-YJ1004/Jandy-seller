@@ -1,9 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
-const itemoptions = {
-    '의류': {종류 : ['1', '2', '3', '4', '5'], 옵션 : ['a', 'b', 'c', 'd', 'e']},
-    '스티커/지류' : {종류 : ['1', '2', '3', '4'], 옵션 : ['1', '2', '3']}
-  }
-  const initialStateValue = {location: "", itemtype: "", itemoptions: itemoptions['의류'], selectedOptions : {종류 : "", 옵션: ""}};
+import { API_BASE_URL } from "./APIconfig";
+import axios from "axios";
+// const itemoptions = {
+//     '의류': {종류 : ['1', '2', '3', '4', '5'], 옵션 : ['a', 'b', 'c', 'd', 'e']},
+//     '스티커/지류' : {종류 : ['1', '2', '3', '4'], 옵션 : ['1', '2', '3']}
+//   }
+
+//카테고리 목록 가져오기
+export const fetchItemOptions = async () => {
+    return await axios.get(`${API_BASE_URL}/categories`).then(res => res.data);
+}
+
+
+
+const initialStateValue = {
+    location: "", 
+    itemtype: "", 
+    itemoptions: "", 
+    selectedOptions : {종류 : "", 옵션: ""},
+};
+
 export const categorySlice = createSlice({
     name : "category",
     initialState: {value : initialStateValue},
@@ -13,11 +29,11 @@ export const categorySlice = createSlice({
         },
         selectItemType : (state, action) => {
             state.value = action.payload
-            state.value.itemoptions = itemoptions[action.payload.itemtype];
+            // state.value.itemoptions = itemoptions[action.payload.itemtype];
         },
         selectItemOption : (state, action) => {
             state.value.selectedOptions = {...state.value.selectedOptions, ...action.payload}
-        }
+        },
     }
 })
 

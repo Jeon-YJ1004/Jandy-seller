@@ -1,4 +1,4 @@
-const KAKAO_AUTH_URL = 'http://3.39.222.68:8080/api/v1/oauth2/authorization/kakao';
+const KAKAO_AUTH_URL = 'http://13.124.100.213:8080/oauth2/authorization/kakao';
 
 
 
