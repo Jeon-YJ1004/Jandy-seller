@@ -1,20 +1,26 @@
-import { React, useEffect } from "react";
-
+import { React, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import Banner from "../components/mainPage/Banner";
-import Header from "../components/common/Header";
-import SearchBox from "./../components/common/SearchBox";
-import product_list from "../assets/json/product_list.js";
-import Product from "../components/common/Product";
+// import product_list from "../assets/json/product_list.js";
+import { Header, SearchBox, Product } from "../components/common";
+import productSlice from "../reducers/productApi";
+import { getAllPrdDB } from "../reducers/productApi";
 
 function Main() {
-  const prd_list = product_list;
-  useEffect(() => {
-    // 쿠키에 로그인 세션이 있는지 확인
-    // 상품 리스트를 db에서 받아오기
-  }, []);
+  // 쿠키에 로그인 세션이 있는지 확인
+  // if(isLogin(true){
+  //   dispatch(useActions.checkLoginDB());
+  // })
+  const prd_list = useSelector((state) => state.prd.list);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    // 상품 리스트를 db에서 받아오기
+    dispatch(getAllPrdDB());
+    console.log(prd_list);
+  }, []);
   return (
     <>
       <Container>
@@ -22,11 +28,9 @@ function Main() {
         <Banner />
         인기 해쉬테그
         <SearchBox />
-        주제
         {prd_list.map((product) => {
           return <Product key={product.id} id={product.id} {...product} />;
         })}
-        
       </Container>
     </>
   );

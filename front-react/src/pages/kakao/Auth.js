@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
-import { useCookies } from 'react-cookie';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from "react";
+import { useCookies } from "react-cookie";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from '../../reducers/user';
 
@@ -19,7 +19,6 @@ function Auth() {
           setCookie('user_token', token, { path : '/', expires : expires});
         }
     }
-
     const setNickname = () => {
       if (nickname !== null || nickname !== "") {
         //유저 닉네임 state저장
@@ -35,13 +34,6 @@ function Auth() {
       setNickname();
     })
 
-  return (
-    <div>
-      {token}
-    </div>
-  )
-}
-export default Auth
-
-
-
+  return <div>{token}</div>;
+  }
+export default Auth;

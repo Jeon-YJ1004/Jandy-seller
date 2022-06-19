@@ -4,13 +4,16 @@ import styled from "styled-components";
 // import PropTypes from "prop-types";
 
 function Product(props) {
-  const detailURL = `detail/${props.id}`;
+  const detailURL = `/product/detail/${props.id}`;
   return (
     <>
       <StyledLink to={detailURL}>
-        {/* <img></img> */}
-        <StyledP>{props.name}</StyledP>
-        <Price>{props.price}</Price>
+        <img src={props.image} alt="상품이미지"></img>
+        <StyledP>{props.store}</StyledP>
+
+        <StyledP>{props.item}</StyledP>
+
+        {/* <Price>{props.price}</Price> */}
         <Unit>원</Unit>
       </StyledLink>
     </>
@@ -18,11 +21,10 @@ function Product(props) {
 }
 
 const StyledLink = styled(Link)`
-  overflow:"hidden;
+  overflow: hidden;
   textoverflow: ellipsis;
   whitespace: nowrap;
   width: 272px;
-
 `;
 const StyledP = styled.p`
   font-weight: bold;
@@ -35,9 +37,9 @@ const StyledP = styled.p`
   width: 150px;
 `;
 const Price = styled.span`
-  margin=14px 0px 0px;
-  size="13px";
-  `;
+  margin: 14px 0px 0px;
+  size: 13px;
+`;
 const Unit = styled.span`
   font-size: 0.7em;
   color: gray;
