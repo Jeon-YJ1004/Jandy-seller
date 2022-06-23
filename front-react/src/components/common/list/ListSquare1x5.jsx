@@ -2,46 +2,12 @@ import { Box } from '@mui/material'
 import { React, useState } from 'react'
 import ListSquareEle from './element/ListSquareEle'
 import styled from "styled-components";
+import { useSelector } from 'react-redux';
 
 function ListCircle1x5({header}) {
     //얻어오는 데이터에 따라 market or makeit로 구분-> 하위 element의 link 가 바뀌게 됨
     const [type, settype] = useState('makeit');
-    const [items, setitems] = useState([
-        {
-          id: 1,
-          factory : "블루프린팅",
-          item : "자개아크릴",
-          price : 3000,
-          like : 120,
-        }, {
-          id: 2,
-          factory : "블루프린팅",
-          item : "인쇄 하트 아크릴",
-          price : 3000,
-          like : 120,
-        },
-        {
-          id: 3,
-          factory : "블루프린팅",
-          item : "기본 무제 노트",
-          price : 3000,
-          like : 120,
-        },
-        {
-          id: 4,
-          factory : "블루프린팅",
-          item : "무광 카페 스티커",
-          price : 3000,
-          like : 120,
-        },
-        {
-            id: 5,
-            factory : "블루프린팅",
-            item : "무광 카페 스티커",
-            price : 3000,
-            like : 120,
-          },
-      ]);
+    const items = useSelector(state => state.category.itemList)
   
 
 

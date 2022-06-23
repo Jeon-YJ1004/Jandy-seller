@@ -5,6 +5,7 @@ import OptionSelector from '../../components/makeitPage/OptionSelector'
 import DetailOptionSelector from '../../components/makeitPage/DetailOptionSelector'
 import { useDispatch } from 'react-redux'
 import { fetchItemOptions } from '../../reducers/categoryApi'
+import ListIndexPage from '../../components/common/list/ListIndexPage'
 
 function MakeitCategory() {
   const dispatch = useDispatch();
@@ -21,6 +22,8 @@ function MakeitCategory() {
             </Box>
             <br></br>
             <DetailOptionSelector label="종류"></DetailOptionSelector>
+            <br></br>
+            <ListIndexPage></ListIndexPage>
         </Box>
     </div>
   )

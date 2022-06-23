@@ -2,7 +2,7 @@ import { Box, Container } from '@mui/material'
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { fetchItemList, fetchItemOptions } from '../../reducers/categoryApi';
+import { selectSubCate } from '../../reducers/categoryApi';
 
 function DetailOptionSelector() {
     const dispatch = useDispatch();
@@ -15,13 +15,9 @@ function DetailOptionSelector() {
 
     const optionClickHandler = (cateID) => {
         console.log(cateID)
-        
+        dispatch(selectSubCate(cateID))
     }
 
-    useEffect(() => {
-        dispatch(fetchItemOptions());
-      }, [])
-      
   return (
     <div>
         <Container sx={{border : 'solid 1.5px black', height: '100px', p: 4, mt : 4}}>

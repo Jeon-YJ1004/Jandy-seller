@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -7,24 +7,24 @@ import { Link } from 'react-router-dom';
 
 function ListSquareEle(props) {
   const type = props.type;
-  const {id, factory, item, img, price, like} = props.item;
+  const {id, company, name, productionThumbnailImage, price, like} = props.item;
   const size = props.size;
   const linkUrl = `/${type}/${id}`
   return (
     <Link to={linkUrl}>
       <Box sx={{ maxWidth: size, pb: 2 }}>
         <Box
+        component="img"
           sx={{width: size,
             height: size,
-            backgroundColor: '#F2F2F2',
-          }}
+          }} src={productionThumbnailImage}
         />
         <Box sx={{p: '12px'}}>
         <Typography variant="body4" color="text.secondary">
-            {factory}
+            {company}
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
-            {item}
+            {name}
           </Typography>
         </Box>
         <Box sx={{position: 'relative'}}>

@@ -35,16 +35,16 @@ export const fetchItemDetail = createAsyncThunk("makeit/GET_DETAIL_ITEM", async 
     }
 })
 
-export const fetchItemList = createAsyncThunk("makeit/GET_ITEM", async (cateid, size, page, sort) => {
+export const fetchItemList = createAsyncThunk("makeit/GET_ITEM", async ({categoryId, size, page, sort}) => {
     try {
-        const response = await axios.get(API_BASE_URL + `production/list`, {
+        const response = await axios.get(API_BASE_URL + `/production/list`, {
             params: {
-            categoryId : cateid,
+            categoryId : 35,
             page : page,
             size : size,
             sort : sort }
         });
-        return response.data;
+        return response.data.data;
     } catch (err) {
         return err.message;
     }
@@ -92,4 +92,4 @@ const categorySlice = createSlice({
 
 export default categorySlice;
 
-export const {setLocation, selectCate, setListPage, clickItem} = categorySlice.actions;
+export const {setLocation, selectCate, setListPage, clickItem, selectSubCate} = categorySlice.actions;
