@@ -2,15 +2,12 @@ import { Box } from '@mui/material'
 import { React, useState } from 'react'
 import ListSquareEle from './element/ListSquareEle'
 import styled from "styled-components";
-import { useSelector } from 'react-redux';
 
-function ListCircle1x5({header}) {
+function ListCircle1x5({header, items}) {
     //얻어오는 데이터에 따라 market or makeit로 구분-> 하위 element의 link 가 바뀌게 됨
-    const [type, settype] = useState('makeit');
-    const items = useSelector(state => state.category.itemList)
+    const link = "makeit/detail"; 
+    console.log(items);
   
-
-
   return (
     <div>
       <StyledH>{header}<MoreBtn>더보기</MoreBtn></StyledH>
@@ -19,12 +16,12 @@ function ListCircle1x5({header}) {
               mt : 4,
               mb : 4,
             }}>
-            {items.map((item, index) => 
+            {items && items.map((item, index) => 
             <div key={index}>
             <Box gridRow={1} sx={{
                 textAlign: 'left' 
             }}>
-              <ListSquareEle item={item} size={220} type={{type}}></ListSquareEle>
+              <ListSquareEle item={item} size={220} link={link}></ListSquareEle>
             </Box>
             </div>
             )}

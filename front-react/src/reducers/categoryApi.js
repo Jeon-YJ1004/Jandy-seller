@@ -28,7 +28,7 @@ export const fetchItemOptions = createAsyncThunk("category/GET_CATE", async () =
 
 export const fetchItemDetail = createAsyncThunk("makeit/GET_DETAIL_ITEM", async (itemId) => {
     try {
-        const response = await axios.get(API_BASE_URL + `production/${itemId}`);
+        const response = await axios.get(API_BASE_URL + `/production/${itemId}`);
         return response.data;
     } catch (err) {
         return err.message;
@@ -39,7 +39,7 @@ export const fetchItemList = createAsyncThunk("makeit/GET_ITEM", async ({categor
     try {
         const response = await axios.get(API_BASE_URL + `/production/list`, {
             params: {
-            categoryId : 35,
+            categoryId : 22, //현재 서버에서 지원하는 Id만 가능,
             page : page,
             size : size,
             sort : sort }

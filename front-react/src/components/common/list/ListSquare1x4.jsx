@@ -4,10 +4,10 @@ import ListSquareEle from './element/ListSquareEle'
 import styled from "styled-components";
 import { useSelector } from 'react-redux';
 
-function ListCircle1x4({header}) {
+function ListCircle1x4({header, items}) {
     //Type: 얻어오는 데이터에 따라 market or makeit로 구분 -> 하위 element의 link 가 바뀌게 됨
     const [type, settype] = useState('makeit');
-    const items = useSelector(state => state.category.itemList)
+    
 
   return (
     <div>
@@ -18,7 +18,7 @@ function ListCircle1x4({header}) {
               mt : 4,
               mb : 4,
             }}>
-            {items.map((item, index) => 
+            {items && items.map((item, index) => 
             <div key={index}>
             <Box gridRow={1} sx={{
                 textAlign: 'left' 

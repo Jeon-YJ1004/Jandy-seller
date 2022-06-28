@@ -27,7 +27,7 @@ function MakeitHome() {
 
    useEffect(() => {
     dispatch(fetchItemOptions());
-  }, [])
+  }, [dispatch])
    
   return (
     <div>

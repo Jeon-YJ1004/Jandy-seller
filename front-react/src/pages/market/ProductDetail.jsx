@@ -17,7 +17,7 @@ function ProductDetail(props) {
   useEffect(() => {
     //db에서 product 조회
     dispatch(getPrdDetailDB(id));
-  }, []);
+  },);
 
   //상품 구매를 위한 옵션
 

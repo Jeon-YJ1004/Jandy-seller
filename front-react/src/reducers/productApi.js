@@ -4,7 +4,7 @@ import axios from "axios";
 import product_list from "../assets/json/product_list";
 
 // //!!!!!!aws 정보 입력해야함!!!
-const API_BASE_URL = "http://13.124.100.213:8080/swagger-ui/index.html#/";
+const API_BASE_URL = "http://13.124.100.213:8080/api/v1";
 
 const initialState = {
   list: product_list,

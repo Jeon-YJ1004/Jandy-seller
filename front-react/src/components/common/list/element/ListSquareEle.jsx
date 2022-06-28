@@ -6,13 +6,13 @@ import { Box } from '@mui/system';
 import { Link } from 'react-router-dom';
 
 function ListSquareEle(props) {
-  const type = props.type;
+  const link = props.link;
   const {id, company, name, productionThumbnailImage, price, like} = props.item;
   const size = props.size;
-  const linkUrl = `/${type}/${id}`
+  const linkUrl = `/${link}/${id}`
   return (
     <Link to={linkUrl}>
-      <Box sx={{ maxWidth: size, pb: 2 }}>
+      <Box sx={{ maxWidth: size, pb: 2, mb: 5 }}>
         <Box
         component="img"
           sx={{width: size,

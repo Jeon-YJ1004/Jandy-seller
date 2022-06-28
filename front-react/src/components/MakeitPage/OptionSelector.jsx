@@ -6,7 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import styled from 'styled-components';
 import {Box, Container} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import {selectCate, fetchItemOptions} from '../../reducers/categoryApi' 
+import {selectCate} from '../../reducers/categoryApi' 
 
 function OptionSelector() {
    const dispatch = useDispatch();

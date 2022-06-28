@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react'
 
-import {Box} from '@mui/material'
+import {Box, Container} from '@mui/material'
 import OptionSelector from '../../components/makeitPage/OptionSelector'
 import DetailOptionSelector from '../../components/makeitPage/DetailOptionSelector'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchItemOptions } from '../../reducers/categoryApi'
 import ListIndexPage from '../../components/common/list/ListIndexPage'
 
@@ -14,6 +14,7 @@ function MakeitCategory() {
     dispatch(fetchItemOptions());
   }, [])
   
+  const items = useSelector(state => state.category.itemList)
   return (
     <div>
         <Box>
@@ -23,7 +24,7 @@ function MakeitCategory() {
             <br></br>
             <DetailOptionSelector label="종류"></DetailOptionSelector>
             <br></br>
-            <ListIndexPage></ListIndexPage>
+            <ListIndexPage items={items}></ListIndexPage>
         </Box>
     </div>
   )
