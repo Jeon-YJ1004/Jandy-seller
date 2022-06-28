@@ -15,9 +15,12 @@ const purchaseSlice = createSlice({
         },
         setTotalPrice : (state, action) => {
             state.totalPrice = action.payload
+        },
+        flushShoppingList : (state, action) => {
+            state = initialStateValue;
         }
     }
 })
 
 export default purchaseSlice;
-export const {setShoppingList, setTotalPrice} = purchaseSlice.actions;
+export const {setShoppingList, setTotalPrice, flushShoppingList} = purchaseSlice.actions;

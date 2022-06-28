@@ -32,18 +32,18 @@ function ItemSummary({itemInfo}) {
             </ItemDetails>
             <Line></Line>
             <ItemDetails>
-                <ItemDetailLabel>상품정보</ItemDetailLabel>
+                <ItemDetailLabel>상품 정보</ItemDetailLabel>
                 <ItemDetailContent>{category}</ItemDetailContent>
             </ItemDetails>
             <Line></Line>
             <ItemDetails>
-                <ItemDetailLabel>상품옵션</ItemDetailLabel>
+                <ItemDetailLabel>상품 옵션</ItemDetailLabel>
             </ItemDetails>
             <ItemDetails>
                 <ItemOptionSelector options={options}></ItemOptionSelector>
             </ItemDetails>
             <Box sx={{mt: 5,}}>
-            <Link to='/order/'><img src={btnSubmit} alt="orderSubmit"></img></Link>
+            <Link to={`/makeit/order/${id}/${cookies.user_token}`}><img src={btnSubmit} alt="orderSubmit"></img></Link>
             </Box>
         </Box>
     </Box>

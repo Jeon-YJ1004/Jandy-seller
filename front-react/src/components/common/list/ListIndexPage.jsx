@@ -1,21 +1,12 @@
 import React, {useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchItemList } from '../../../reducers/categoryApi';
+import { useSelector } from 'react-redux'
 import ListSquare from './ListSquare'
 import {Container} from '@mui/material'
 import styled from 'styled-components';
 
 function ListIndexPage({items}) {
-  const dispatch = useDispatch();
   const listOptions = useSelector((state) => state.category.listfetchOptions);
-
-  useEffect(() => {
-    dispatch(fetchItemList(listOptions))
-    console.log(listOptions);
-  }, [dispatch, listOptions])
   
- 
-
   return (
     <Container >
     <div>

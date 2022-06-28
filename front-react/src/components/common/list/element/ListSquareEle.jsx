@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 function ListSquareEle(props) {
   const link = props.link;
-  const {id, company, name, productionThumbnailImage, price, like} = props.item;
+  const {id, company, name, productionThumbnailImage, price, like, view} = props.item;
   const size = props.size;
   const linkUrl = `/${link}/${id}`
   return (
@@ -32,7 +32,7 @@ function ListSquareEle(props) {
           position: 'absolute', left: '15px'}}>{price} 원</Typography>
           <IconButton aria-label="add to favorites" sx={{
             position: 'absolute', right:'10px'}}>
-            <FavoriteIcon /> <Typography size="small">{like}</Typography>
+            <FavoriteIcon /> <Typography size="small">{view}</Typography>
           </IconButton>
         </Box>
       </Box>

@@ -1,6 +1,4 @@
-import React, {
-    useState, useEffect
-} from 'react'
+import React, { useEffect } from 'react'
 import {Box} from '@mui/material'
 import styled from 'styled-components'
 import { QuantityPicker } from 'react-qty-picker'
@@ -57,7 +55,7 @@ function ItemOptionSelector({options}) {
             <Line></Line>
             <ItemDetails>
                 <ItemPriceLabel>총 상품 가격</ItemPriceLabel>
-                <ItemPriceContent>{totalPrice}</ItemPriceContent>
+                <ItemPriceContent>{totalPrice.toLocaleString()} 원</ItemPriceContent>
             </ItemDetails>
     </Box>
     </>

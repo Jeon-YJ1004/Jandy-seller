@@ -13,7 +13,7 @@ import Login from "./pages/Login";
 import Auth from "./pages/kakao/Auth.js";
 import Profile from "./pages/kakao/Profile.js";
 import { ProductDetail, Mymarket, ProductRegister } from "./pages/market";
-import { MakeitHome, MakeitCategory, MakeitDetail } from "./pages/Makeit";
+import { MakeitHome, MakeitCategory, MakeitDetail, MakeitOrder, MakeitPurchase } from "./pages/Makeit";
 import Main from "./pages/Main";
 import Mypage from "./pages/Mypage";
 import Logout from "./pages/kakao/Logout";
@@ -46,6 +46,8 @@ function App() {
           <Route path="/makeit" element={<MakeitHome />} />
           <Route path="/makeit/category" element={<MakeitCategory />} />
           <Route path="/makeit/detail/:id" element={<MakeitDetail />} />
+          <Route path="/makeit/order/:id/:cookie" element={<MakeitOrder />} />
+          <Route path="/makeit/purchase/:id/:cookie" element={<MakeitPurchase />} />
         </Routes>
       </Router>
     </div>
