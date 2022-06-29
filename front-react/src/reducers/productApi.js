@@ -1,4 +1,3 @@
-import { createAction, handleActions } from "redux-actions";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import product_list from "../assets/json/product_list";

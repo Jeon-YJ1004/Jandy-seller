@@ -1,14 +1,19 @@
 import React, {useEffect} from 'react'
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom'
-import { Box, Container, Divider, Typography } from '@mui/material';
+import { useCookies } from 'react-cookie';
+import { Box, Container, Divider, Typography, Button } from '@mui/material';
 import styled from 'styled-components';
 import Header from '../../components/common/Header';
 import DesignUploader from '../../components/makeitPage/DesignUploader';
+import purchaseBtn from '../../assets/img/purchaseBtn.png'
 
 function MakeitOrder() {
-    const {id, user_token} = useParams();
     const navigate = useNavigate();
+    const {id} = useParams();
+    const [cookie, ] = useCookies(['user_token']);
+    const uploadSuccess = useSelector(state => state.purchase.fileUploadState);
+    
     const shoppingList = useSelector(state => state.purchase.shoppingList);
     const totalPrice = useSelector(state => state.purchase.totalPrice)
     const itemInfo = useSelector(state => state.category.itemInfo);
@@ -16,9 +21,19 @@ function MakeitOrder() {
     const dateStr = now.getFullYear() + "년 " + (now.getMonth()+1) + "월 " + now.getDate() + "일";
 
     useEffect(() => {
-        if (Object.keys(itemInfo).length === 0 || shoppingList.length === 0) {alert("옵션을 하나 이상 선택하세요"); navigate(-1);}
+        if (Object.keys(itemInfo).length === 0 || shoppingList.length === 0) {alert("옵션을 하나 이상 선택하세요"); navigate(-1); }
+        if (cookie.user_token === undefined) {alert("로그인 세션이 없습니다."); navigate(-1);}
     }, )
 
+    
+    const nextLink = (e) => {
+        e.preventDefault();
+        if (uploadSuccess === "completed") {
+            const nexturl = "/makeit/purchase/"+id+"/"+cookie.user_token;
+            navigate(nexturl);
+        }
+        else (alert('도안 파일이 업로드 되지 않았습니다.'))
+    }
   return (
     <div>
         <Header></Header>
@@ -32,7 +47,7 @@ function MakeitOrder() {
                     <Typography>{itemInfo.name} / {itemInfo.company}</Typography>
                     <Typography>{dateStr}</Typography>
                     <Typography>{itemInfo.category}</Typography>
-                    {shoppingList.map(ele => <Typography>
+                    {shoppingList.map((ele,idx) => <Typography key={idx}>
                         {ele.name} / {ele.amount} 개
                     </Typography>)}
                 </Box>
@@ -43,8 +58,13 @@ function MakeitOrder() {
             <StyledH3>도안서</StyledH3>
             <Divider></Divider>
             <Box>
-                <DesignUploader access_token={user_token}></DesignUploader>
+                <DesignUploader></DesignUploader>
             </Box>
+            <Divider></Divider>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Button onClick={nextLink}><Box component="img" src={purchaseBtn}></Box></Button>
         </Container>
     </div>
   )

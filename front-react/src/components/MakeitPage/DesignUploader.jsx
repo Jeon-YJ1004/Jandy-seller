@@ -2,24 +2,33 @@ import { Box } from '@mui/system'
 import React, {useState} from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
-import { API_BASE_URL } from '../../reducers/APIconfig';
 import { useCookies } from 'react-cookie';
+import { useDispatch } from 'react-redux';
+import { setFileStoragePath } from '../../reducers/purchaseApi';
 
 function DesignUploader() {
     const [files, setFiles] = useState([]);
-    const [cookies, setCookie] = useCookies(['user_token']);
+    const [cookies, ] = useCookies(['user_token']);
     console.log(cookies.user_token);
+    const dispatch = useDispatch(); 
+
+    //파일 경로 받기
     const submitHandler = (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("uploadfile", files.length && files[0].uploadedFile);
-
         axios({
         method: "post",
         url: 'http://13.124.100.213:8080/uploads',
         data: formData,
         headers: { "Content-Type": "multipart/form-data", Authorization: cookies.user_token }
-        }).then((res) => console.log(res));
+        }).then((res) => {
+            let payload= {
+                filepath : res.data.images,
+                state : "completed"
+            }
+            dispatch(setFileStoragePath(payload))
+            });
         setFiles([]);
     }
 
