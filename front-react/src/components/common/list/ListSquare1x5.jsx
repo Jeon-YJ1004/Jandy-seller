@@ -1,16 +1,14 @@
 import { Box } from "@mui/material";
 import { React, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import ListSquareEle from "./element/ListSquareEle";
 import styled from "styled-components";
 
-function ListCircle1x5(props) {
+function ListSquare1x5({ header, link, productList }) {
   //얻어오는 데이터에 따라 market or makeit로 구분-> 하위 element의 link 가 바뀌게 됨
-  const type = props.type;
-  const prd_list = props.productList;
-  const header = props.header;
   const [items, setitems] = useState(
-    prd_list
-      ? prd_list
+    productList
+      ? productList
       : [
           {
             id: 1,
@@ -49,14 +47,15 @@ function ListCircle1x5(props) {
           },
         ]
   );
-  // useEffect(() => {
-  //   setitems(prd_list);
-  // },[]);
+  console.log(items);
+
   return (
     <div>
       <StyledH>
         {header}
-        <MoreBtn>더보기</MoreBtn>
+        <MoreBtn to="product/category" productList={items}>
+          더보기
+        </MoreBtn>
       </StyledH>
       <Box
         display="grid"
@@ -67,23 +66,23 @@ function ListCircle1x5(props) {
           mb: 4,
         }}
       >
-        {items.map((item, index) => (
-          <div key={index}>
-            <Box
-              gridRow={1}
-              sx={{
-                textAlign: "left",
-                marginInline: 1,
-              }}
-            >
-              <ListSquareEle
-                item={item}
-                type={type}
-                img={item.image}
-              ></ListSquareEle>
-            </Box>
-          </div>
-        ))}
+        {items &&
+          items.map((item, index) => (
+            <div key={index}>
+              <Box
+                gridRow={1}
+                sx={{
+                  textAlign: "left",
+                }}
+              >
+                <ListSquareEle
+                  item={item}
+                  size={220}
+                  link={link}
+                ></ListSquareEle>
+              </Box>
+            </div>
+          ))}
       </Box>
     </div>
   );
@@ -97,9 +96,9 @@ const StyledH = styled.p`
   position: relative;
 `;
 
-const MoreBtn = styled.button`
+const MoreBtn = styled(Link)`
   position: absolute;
   right: 3px;
 `;
 
-export default ListCircle1x5;
+export default ListSquare1x5;

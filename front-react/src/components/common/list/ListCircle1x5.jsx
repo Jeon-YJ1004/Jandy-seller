@@ -1,37 +1,16 @@
 import { Avatar, Box } from '@mui/material'
 import { React, useState } from 'react'
+import { useSelector } from 'react-redux';
 import styled from "styled-components";
 
-function ListCircle1x5({header, onClickHandler}) {
-  const [categories, setcategory] = useState([
-    {
-      id: 1,
-      name : "의류",
-      img : "",
-    }, {
-      id: 2,
-      name : "스티커/지류",
-      img : "",
-    },
-    {
-      id: 3,
-      name : "키링",
-      img : "",
-    },
-    {
-      id: 4,
-      name : "핸드폰 악세사리",
-      img : "",
-    },
-    {
-      id: 5,
-      name : "포장용품",
-      img : "",
-    },
-  ]);
+function ListCircle1x5({header, lists, onClickHandler}) {
   
-
-
+  const allCategories = useSelector((state) => state.category.allCategories);
+  //list should be {
+  //   id : ,
+  //   name : ,
+  //   img : .
+  // }
   return (
     <div>
       <StyledH>{header}</StyledH>
@@ -40,7 +19,7 @@ function ListCircle1x5({header, onClickHandler}) {
               mt : 4,
               mb : 4,
             }}>
-            {categories.map((category, index) => 
+            {allCategories && allCategories.map((category, index) => 
             <div key={index}>
             <Box gridRow={1} sx={{
               justifyContent: "center"

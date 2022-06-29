@@ -7,7 +7,7 @@ import BuyOrCart from "../../components/productDetailPage/BuyOrCart";
 import ShowDetail from "../../components/productDetailPage/ShowDetail";
 import ProductReview from "./../../components/productDetailPage/ProductReview";
 import { getPrdDetailDB } from "../../reducers/productApi";
-
+import FullWidthTabs from "../../components/makeitPage/TabPanel";
 function ProductDetail(props) {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -20,11 +20,14 @@ function ProductDetail(props) {
     dispatch(getPrdDetailDB(id));
   }, [dispatch, id]);
 
+  //상품 구매를 위한 옵
+
   return (
     <>
       <Header />
       <BuyOrCart productInfo={prd} />
-      <ShowDetail productDesc={prd.description} />
+      {/* <ShowDetail productDesc={prd.description} /> */}
+      <FullWidthTabs></FullWidthTabs>
       <ProductReview />
     </>
   );

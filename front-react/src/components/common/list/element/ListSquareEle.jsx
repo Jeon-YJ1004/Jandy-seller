@@ -1,27 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import styled from "styled-components";
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 
 function ListSquareEle(props) {
-  const type = props.type;
-  const img = props.img;
-  const { id, factory, name, price, like } = props.item;
-  const size = props.size;
-  const linkUrl = type === "market" ? `product/detail/${id}` : `/${type}/${id}`;
+  const link = props.link;
+  const { id, company, name, price, like, view } = props.item;
 
+  const productionThumbnailImage =
+    link === "makeit" ? props.item.productionThumbnailImage : props.item.image;
+
+  const size = props.size;
+  const linkUrl = `/${link}/detail/${id}`;
   return (
     <Link to={linkUrl}>
-      <Box sx={{ maxWidth: 289, height: 410, pb: 2 }}>
-        <Box sx={{ width: 289, height: 304 }}>
-          <StyledImg src={img} alt="상품 썸네일" />
-        </Box>
+      <Box sx={{ maxWidth: size, pb: 2, mb: 5 }}>
+        <Box
+          component="img"
+          sx={{ width: size, height: size }}
+          src={productionThumbnailImage}
+        />
         <Box sx={{ p: "12px" }}>
           <Typography variant="body4" color="text.secondary">
-            {factory}
+            {company}
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
             {name}

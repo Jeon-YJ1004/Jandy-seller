@@ -9,6 +9,9 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import Grid from "../../components/common/Grid";
 import { history } from "../../reducers/history";
+import { Box } from "@mui/material";
+import ImgSlicker from "../common/ImgSlicker";
+
 function BuyOrCart(props) {
   //상품 정보
   const {
@@ -94,55 +97,67 @@ function BuyOrCart(props) {
   // };
   return (
     <>
-      <Grid padding="60px 0 0 0" max_width="950px" margin="0 auto">
-        <div style={{ alignItems: "flex-start", display: "flex" }}>
-          <img height="370px" src={image} />
-          <Grid>
-            <Grid is_flex>
-              <Grid padding="30px 24px">
-                <div size="1.4em" bold margin="0 0 6px">
-                  {item}
-                </div>
-                <div color="#A1A1A1" margin="8px 0px 24px">
-                  판매기간 {reg_date}
-                </div>
-                <div color="#A1A1A1" margin="8px 0px 24px">
-                  상품정보 {category}
-                </div>
-              </Grid>
-            </Grid>
+      <Box
+        display="grid"
+        gridTemplateColumns="repeat(2,1fr)"
+        gap={6}
+        sx={{
+          maxWidth: "lg",
+          height: 600,
+          m: "0 auto",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            mr: 5,
+          }}
+        >
+          <ImgSlicker imgs={[image]}></ImgSlicker>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            ml: 5,
+          }}
+        >
+          <ItemName>{item}</ItemName>
+          <ItemDetails>
+            <ItemDetailLabel>마켓</ItemDetailLabel>
+            <ItemDetailContent>{market}</ItemDetailContent>
+          </ItemDetails>
+          <Line></Line>
+          <ItemDetails>
+            <ItemDetailLabel>상품 정보</ItemDetailLabel>
+            <ItemDetailContent>{category}</ItemDetailContent>
+          </ItemDetails>
+          <Line></Line>
+          <ItemDetails></ItemDetails>
+          <ItemDetails>
+            <ItemDetailLabel>상품 선택</ItemDetailLabel>
+          </ItemDetails>
 
-            <Line />
-
-            <Grid padding="32px 16px 16px 10px">
-              상품 선택
-              <Select onChange={selectOption}>
-                <OptionGrid>[필수] 옵션을 선택해 주세요 </OptionGrid>
-                <OptionGrid disabled="true"> ------------------ </OptionGrid>
-                {optionList.map((opt, idx) => {
-                  return (
-                    <option value={opt} key={id + idx}>
-                      {opt}
-                    </option>
-                  );
-                })}
-
-                {/* <option value="화이트" key={id + "화이트"}>
-                  화이트
+          <Select onChange={selectOption}>
+            <OptionGrid>[필수] 옵션을 선택해 주세요 </OptionGrid>
+            <OptionGrid disabled="true"> ------------------ </OptionGrid>
+            {optionList.map((opt, idx) => {
+              return (
+                <option value={opt} key={id + idx}>
+                  {opt}
                 </option>
-                <option value="블랙" key={id + "블랙"}>
-                  블랙
-                </option> */}
-              </Select>
-            </Grid>
+              );
+            })}
+          </Select>
 
-            {option && //선택한 옵션이 존재할 때 화면 렌더링
-              option.map((o, idx) => {
-                return (
-                  <Grid padding="16px" key={idx}>
-                    <Grid bg="rgb(248, 248, 248)" height="90px" padding="16px">
-                      <Grid is_flex padding="0 0 14px 0">
-                        {/* <div margin="0" size="13px">
+          {option && //선택한 옵션이 존재할 때 화면 렌더링
+            option.map((o, idx) => {
+              return (
+                <Grid padding="16px" key={idx}>
+                  <Grid bg="rgb(248, 248, 248)" height="90px" padding="16px">
+                    <Grid is_flex padding="0 0 14px 0">
+                      {/* <div margin="0" size="13px">
                           {optionList.includes("[") ? (
                             <div>
                               [{optionList.text.split("[")[1].split("]")[0]}]
@@ -150,75 +165,73 @@ function BuyOrCart(props) {
                           ) : null}
                           {optionList.text.split("[")[0].split("(")[0]}
                         </div> */}
-                        {/* <RemoveCircleOutlineIcon
+                      {/* <RemoveCircleOutlineIcon
                           onClick={() => {
                             deleteOption(optionList);
                           }}
                         ></RemoveCircleOutlineIcon> */}
-                        옵션명
-                      </Grid>
-                      <Grid height="28px" is_flex center>
-                        <Grid is_flex width="116px">
-                          <Grid
-                            onClick={() => {
-                              minusQuantity(option);
-                            }}
-                            width="28px"
-                            height="28px"
-                            bg="rgb(255, 255, 255)"
-                          >
-                            <RemoveIcon />
-                          </Grid>
-                          <Grid
-                            width="50px"
-                            height="28px"
-                            bg="rgb(255, 255, 255)"
-                            margin="0 5px"
-                          >
-                            {option.num ? option.num : 1}
-                          </Grid>
-                          <Grid
-                            onClick={() => {
-                              plusQuantity(option);
-                            }}
-                            width="28px"
-                            height="28px"
-                            bg="rgb(255, 255, 255)"
-                          >
-                            <AddIcon />
-                          </Grid>
+                      {o.text}
+                    </Grid>
+                    <Grid height="28px" is_flex center>
+                      <Grid is_flex width="116px">
+                        <Grid
+                          onClick={() => {
+                            minusQuantity(option);
+                          }}
+                          width="28px"
+                          height="28px"
+                          bg="rgb(255, 255, 255)"
+                        >
+                          <RemoveIcon />
+                        </Grid>
+                        <Grid
+                          width="50px"
+                          height="28px"
+                          bg="rgb(255, 255, 255)"
+                          margin="0 5px"
+                        >
+                          {option.num ? option.num : 1}
+                        </Grid>
+                        <Grid
+                          onClick={() => {
+                            plusQuantity(option);
+                          }}
+                          width="28px"
+                          height="28px"
+                          bg="rgb(255, 255, 255)"
+                        >
+                          <AddIcon />
                         </Grid>
                       </Grid>
                     </Grid>
                   </Grid>
-                );
-              })}
-
-            <Grid padding="16px" right>
-              <div size="0.8em" margin="0">
-                총 상품 가격
-                <div style={{ fontSize: "22px", margin: "0 0 0 8px" }}>
-                  {quantity}.000원
-                </div>
+                </Grid>
+              );
+            })}
+          <Grid padding="16px" right>
+            <div size="0.8em" margin="0">
+              총 상품 가격
+              <div style={{ fontSize: "22px", margin: "0 0 0 8px" }}>
+                {quantity}.000원
               </div>
-            </Grid>
-            <Grid is_flex padding="16px 16px">
-              <FavoriteBorderIcon
-                sx={{
-                  border: 1,
-                  borderColor: "#C4C4C4",
-                  "&:hover": { color: "#ffe664" },
-                }}
-              />
-              <ShoppingBasketIcon
-                sx={{ color: "#ffe664", border: 1, borderColor: "#C4C4C4" }}
-                onClick={setShoppingBasket}
-              />
-              <StyledBuyButton>구매하기</StyledBuyButton>
-            </Grid>
+            </div>
           </Grid>
-        </div>
-      </Grid>
+          <Grid is_flex padding="16px 16px">
+            <FavoriteBorderIcon
+              sx={{
+                border: 1,
+                borderColor: "#C4C4C4",
+                "&:hover": { color: "#ffe664" },
+              }}
+            />
+            <ShoppingBasketIcon
+              sx={{ color: "#ffe664", border: 1, borderColor: "#C4C4C4" }}
+              onClick={setShoppingBasket}
+            />
+            <StyledBuyButton>구매하기</StyledBuyButton>
+          </Grid>
+        </Box>
+      </Box>
     </>
   );
 }
@@ -239,6 +252,38 @@ BuyOrCart.defaultProps = {
   description: "설명",
 };
 
+const ItemName = styled.h2`
+  text-align: left;
+  font-size: 36px;
+  line-height: 44px;
+`;
+const Line = styled.hr`
+  border: solid 0.2px #ebebeb;
+  width: 92%;
+`;
+
+const ItemDetails = styled.div`
+  display: block;
+  position: relative;
+  margin-bottom: 50px;
+`;
+
+const ItemDetailLabel = styled.ul`
+  position: absolute;
+  left: 10px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: bold;
+  margin-botton: 30px;
+`;
+
+const ItemDetailContent = styled.ul`
+  position: absolute;
+  left: 200px;
+  font-size: 16px;
+  line-height: 24px;
+`;
+
 const Select = styled.select`
   appearance: none;
   -moz-appearance: none; /* Firefox */
@@ -250,13 +295,10 @@ const Select = styled.select`
   padding-left: 12px;
   border-radius: 4px;
   font-size: 14px;
-  background-image: url(
-    data:image/svg + xml,
-    %3Csvgxmlns="http://www.w3.org/2000/svg"width="12"height="6"viewBox="0 0 12 6"style="background:%23fff"%3E%3Cgfill="none"fill-rule="evenodd"transform="translate(-186 -365)"%3E%3Cpathfill="%23FFF"d="M0 0H375V2362H0z"/%3E%3Crectwidth="93"height="39"x="115.5"y="348.5"fill="%23FFF"stroke="%23ECECEC"rx="4"/%3E%3Cpathfill="%233B3B3B"fill-rule="nonzero"d="M196.145 365.15c.193-.197.509-.2.705-.007.197.193.2.51.007.707l-4.892 5c-.193.197-.508.2-.705.008l-5.11-5c-.197-.193-.2-.51-.008-.707.192-.198.508-.202.705-.009l4.754 4.652 4.544-4.644z"/%3E%3C/g%3E%3C/svg%3E
-  );
+
   background-position-x: calc(100% - 12px);
 `;
-const OptionGrid = styled.div`
+const OptionGrid = styled.option`
   width: 100%;
   height: 50px;
   box-sizing: border-box;
@@ -265,13 +307,7 @@ const OptionGrid = styled.div`
   background-color: rgb(248, 248, 248);
   color: rgb(59, 59, 59);
 `;
-const Line = styled.span`
-  padding-left: 2px;
-  div-decoration: line-through;
-  font-size: 1em;
-  color: #a1a1a1;
-  font-weight: 500;
-`;
+
 const Unit = styled.span`
   font-size: 0.7em;
   font-weight: 400;
@@ -281,9 +317,10 @@ const Unit = styled.span`
 const StyledBuyButton = styled.button`
   width: 350px;
   margin-left: 30px;
-  color: black;
+  color:black;
   background-color: #ffe664;
   border-radius:5
+  border:none
   text: bold;
 `;
 export default BuyOrCart;

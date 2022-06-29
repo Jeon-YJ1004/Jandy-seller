@@ -21,9 +21,9 @@ function Main() {
     "이 제품 어때요?",
   ];
   const [headerPrd, setHeaderPrd] = useState({
-    hotPrd_list: prd_list.slice(0, 5),
-    benefitPrd_list: prd_list.slice(6, 11),
-    howAboutPrd_list: prd_list.slice(15, 20),
+    hotPrd_list: prd_list.slice(0, 10),
+    benefitPrd_list: prd_list.slice(11, 20),
+    howAboutPrd_list: prd_list.slice(21, 30),
   });
   useEffect(() => {
     // 상품 리스트를 db에서 받아오기
@@ -42,19 +42,19 @@ function Main() {
                 <SearchBox />
                 <ListSquare1x5
                   header={headers[0]}
-                  type="market"
+                  link="product"
                   productList={headerPrd.hotPrd_list}
                 ></ListSquare1x5>
                 <Divider variant="middle" sx={{ width: "100%" }}></Divider>
                 <ListSquare1x5
                   header={headers[1]}
-                  type="market"
+                  link="product"
                   productList={headerPrd.benefitPrd_list}
                 ></ListSquare1x5>
                 <Divider variant="middle" sx={{ width: "100%" }}></Divider>
                 <ListSquare1x5
                   header={headers[2]}
-                  type="market"
+                  link="product"
                   productList={headerPrd.howAboutPrd_list}
                 ></ListSquare1x5>
               </Box>
