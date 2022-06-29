@@ -9,7 +9,7 @@ import styled from "styled-components";
 function ListSquareEle(props) {
   const type = props.type;
   const img = props.img;
-  const { id, factory, item, price, like } = props.item;
+  const { id, factory, name, price, like } = props.item;
   const size = props.size;
   const linkUrl = type === "market" ? `product/detail/${id}` : `/${type}/${id}`;
 
@@ -24,7 +24,7 @@ function ListSquareEle(props) {
             {factory}
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
-            {item}
+            {name}
           </Typography>
         </Box>
         <Box sx={{ position: "relative" }}>
@@ -35,7 +35,7 @@ function ListSquareEle(props) {
               left: "15px",
             }}
           >
-            {price} 원
+            {price + "00"}원
           </Typography>
           <IconButton
             aria-label="add to favorites"

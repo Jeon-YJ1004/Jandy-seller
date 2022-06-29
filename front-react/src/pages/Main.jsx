@@ -24,19 +24,18 @@ function Main() {
     hotPrd_list: prd_list.slice(0, 5),
     benefitPrd_list: prd_list.slice(6, 11),
     howAboutPrd_list: prd_list.slice(15, 20),
-    // buttonList: prd_list.products.slice(18, 26),
   });
   useEffect(() => {
     // 상품 리스트를 db에서 받아오기
     dispatch(getAllPrdDB());
-  }, []);
+  }, [dispatch, prd_list]);
   return (
     <>
       <Grid>
         <Header />
         <Banner />
         <Grid margin="25px 0 0 0">
-          <Grid width="1140px" margin="auto" is_flex wrap>
+          <Grid width="1140px" margin="auto" is_flex wrap="true">
             <Grid classname="HashTag">인기 해쉬태그</Grid>
             <Container sx={{ alignItems: "center" }}>
               <Box maxWidth="lg" minWidth="sm">
@@ -62,10 +61,6 @@ function Main() {
             </Container>
           </Grid>
         </Grid>
-
-        {/* {prd_list.map((product) => {
-          return <Product key={product.id} id={product.id} {...product} />;
-        })} */}
       </Grid>
     </>
   );

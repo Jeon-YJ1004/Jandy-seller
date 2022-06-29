@@ -49,7 +49,9 @@ function ListCircle1x5(props) {
           },
         ]
   );
-
+  // useEffect(() => {
+  //   setitems(prd_list);
+  // },[]);
   return (
     <div>
       <StyledH>
