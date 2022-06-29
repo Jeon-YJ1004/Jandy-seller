@@ -7,10 +7,8 @@ function Login() {
   return (
     <Grid container sx={{width : '100vw', height: '100vh'}}>
         <Grid item xs={0} md={4} sx={{bgcolor : '#FFE664'}}>
-            
         </Grid>
         <Grid item xs={1} md={2}>
-
         </Grid>
         <Grid item xs={10} md={4} display='flex' sx={{alignItems: 'center'}}>
             <Box sx={{width: '100%', textAlign: 'center'}}>

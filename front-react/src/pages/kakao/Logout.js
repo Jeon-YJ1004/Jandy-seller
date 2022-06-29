@@ -2,21 +2,23 @@ import React, {useEffect} from 'react'
 import { useCookies } from 'react-cookie'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../../reducers/user';
 
 const Logout = () => {
-    const [ , , removeCookie] = useCookies("token");
+    const [ , , removeCookie] = useCookies("user_token");
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const logout = () => {
-        removeCookie("token", { path : '/'});
-        sessionStorage.removeItem("token");
-        localStorage.removeItem("token");
+    const logoutHandler = () => {
+        removeCookie("user_token", { path : '/'});
+        sessionStorage.removeItem("user_token");
+        localStorage.removeItem("user_token");
+        dispatch(logout());
     }
     
 
     useEffect(() => {
-      logout();
+      logoutHandler();
       navigate('/', {replace : true})
     })
     
